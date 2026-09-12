@@ -10,6 +10,7 @@
     "dev": "tsx watch src/index.ts",
     "migrate:up": "tsx src/db/migrator.ts up",
     "migrate:down": "tsx src/db/migrator.ts down",
+    "seed": "tsx src/db/seed.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint . && tsc --noEmit",

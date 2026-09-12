@@ -90,7 +90,17 @@ npm run migrate:up
 
 ---
 
-### Step 5: Start the Development Server
+### Step 5: Seed the Database (Optional)
+
+Prepopulate the database with realistic sample users and 25 tickets across various statuses (`TODO`, `IN_PROGRESS`, `DONE`) to easily test API endpoints, filters, and pagination:
+
+```bash
+npm run seed
+```
+
+---
+
+### Step 6: Start the Development Server
 
 Start the Express app in development mode with hot-reloading:
 
@@ -102,7 +112,7 @@ The server listens on `http://localhost:3000`.
 
 ---
 
-### Step 6: Testing & Quality Checks
+### Step 7: Testing & Quality Checks
 
 Run the automated test suite using Vitest:
 
