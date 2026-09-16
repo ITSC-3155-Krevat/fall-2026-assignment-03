@@ -1,40 +1,26 @@
 import { db, Ticket, NewTicket } from '../db/database.js';
 
-export interface GetTicketsOptions {
+export interface GetAllTicketsOptions {
   limit?: number;
   offset?: number;
   status?: string;
 }
 
 export async function getAllTickets(
-  optionsOrLimit?: GetTicketsOptions | number,
-  offset?: number,
-  status?: string,
+  options: GetAllTicketsOptions = {},
 ): Promise<Ticket[]> {
-  let limitValue: number | undefined;
-  let offsetValue: number | undefined;
-  let statusValue: string | undefined;
-
-  if (typeof optionsOrLimit === 'object' && optionsOrLimit !== null) {
-    limitValue = optionsOrLimit.limit;
-    offsetValue = optionsOrLimit.offset;
-    statusValue = optionsOrLimit.status;
-  } else {
-    limitValue = optionsOrLimit;
-    offsetValue = offset;
-    statusValue = status;
-  }
+  const { limit, offset, status } = options;
 
   let query = db.selectFrom('tickets').selectAll();
 
-  if (statusValue) {
-    query = query.where('status', '=', statusValue);
+  if (status) {
+    query = query.where('status', '=', status);
   }
-  if (limitValue !== undefined) {
-    query = query.limit(limitValue);
+  if (limit !== undefined) {
+    query = query.limit(limit);
   }
-  if (offsetValue !== undefined) {
-    query = query.offset(offsetValue);
+  if (offset !== undefined) {
+    query = query.offset(offset);
   }
 
   return await query.orderBy('id', 'asc').execute();
