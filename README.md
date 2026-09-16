@@ -1,8 +1,8 @@
 # The Agile Issue Tracker API
 
-**Course:** Software Engineering  
-**Topic:** RESTful Web Services & Relational Databases  
-**Tech Stack:** Node.js, TypeScript, Express, Postgres, Kysely, Vitest, Supertest  
+**Course:** Software Engineering
+**Topic:** RESTful Web Services & Relational Databases
+**Tech Stack:** Node.js, TypeScript, Express, Postgres, Kysely, Vitest, Supertest
 **Total Points:** 20 (10 points Week 1, 10 points Week 2)
 
 ---
@@ -81,7 +81,7 @@ Apply the initial database schema to create the `users` and `tickets` tables:
 npm run migrate:up
 ```
 
-> **Note for Week 2:** After you write your migration in `src/db/migrations/002_time_logs.ts`, run `npm run migrate:up` again to create the `time_logs` table.  
+> **Note for Week 2:** After you write your migration in `src/db/migrations/002_time_logs.ts`, run `npm run migrate:up` again to create the `time_logs` table.
 > To rollback the most recent migration, run:
 >
 > ```bash

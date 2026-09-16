@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Migrator, Migration, MigrationProvider, Kysely } from 'kysely';
 import * as initialSchema from './migrations/001_initial_schema.js';
 import * as timeLogs from './migrations/002_time_logs.js';
