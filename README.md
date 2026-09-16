@@ -153,7 +153,7 @@ Your first goal is to build out the API layer. Use the pre-written methods in `s
 Write an Express middleware function that checks for the presence of an `X-User-Id` HTTP header.
 
 - If the header is missing or not a valid number, return `401 Unauthorized`.
-- If present, attach the user ID to the `req` object (e.g., `req.userId`) so downstream routes can use it.
+- If present, attach the user ID to `res.locals` (e.g., `res.locals.userId`) so downstream routes can access it.
 - Apply this middleware only to routes that create or modify data (`POST` and `PATCH`).
 
 ### 2. User Routes (`src/routes/users.ts`)
@@ -218,7 +218,7 @@ Write tests to verify the math logic. Insert time logs for a single ticket, then
 
 ### Part 1: Express, Middleware & Integration Testing (10 Points Total)
 
-- **Middleware (2 points):** Properly checks the header, extracts the ID, handles failures with a `401`, and extends the Express Request type safely.
+- **Middleware (2 points):** Properly checks the header, extracts the ID, handles failures with a `401`, and attaches `userId` to `res.locals` for downstream handlers.
 - **User Routes (3 points):** Correct HTTP verbs, URL structures, status codes (`200`, `201`, `404`), and successful integration with the DAL.
 - **Ticket Routes (3 points):** Successfully implements pagination/filtering queries, body parsing, and utilizes the auth middleware for the `POST`/`PATCH` routes.
 - **Testing (2 points):** Includes functional Supertest cases that hit the Express app and assert specific status codes and response shapes.
