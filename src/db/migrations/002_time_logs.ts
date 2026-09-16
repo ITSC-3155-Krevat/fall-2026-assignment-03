@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Kysely } from 'kysely';
 
 // TODO: Student implementation - Part 2: Database Migration for time_logs
