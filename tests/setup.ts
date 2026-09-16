@@ -23,9 +23,22 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   try {
-    await sql`TRUNCATE TABLE users, tickets RESTART IDENTITY CASCADE`.execute(
-      db,
-    );
+    // Dynamically discover all user-defined tables so this setup works
+    // for Part 1 (users, tickets) and Part 2 (+ time_logs) without
+    // any changes needed from students.
+    const result = await sql<{ tablename: string }>`
+      SELECT tablename
+      FROM pg_tables
+      WHERE schemaname = 'public'
+        AND tablename NOT LIKE 'kysely_%'
+    `.execute(db);
+
+    if (result.rows.length > 0) {
+      const tableList = result.rows.map((r) => `"${r.tablename}"`).join(', ');
+      await sql
+        .raw(`TRUNCATE TABLE ${tableList} RESTART IDENTITY CASCADE`)
+        .execute(db);
+    }
   } catch {
     // Ignore if tables are not yet created
   }
